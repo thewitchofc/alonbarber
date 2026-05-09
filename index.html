@@ -563,12 +563,12 @@
   footer {
     background: var(--white);
     border-top: 1px solid var(--light-gray);
-    padding: 28px 40px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
   }
   .footer-logo {
     font-family: var(--serif);
@@ -672,10 +672,11 @@
     .reviews-grid { grid-template-columns: 1fr; }
     .review-card { padding: 28px 20px; }
 
-    footer { flex-direction: column; gap: 12px; align-items: flex-start; padding: 20px 24px; }
-    .footer-social { gap: 16px; }
-    .footer-info { gap: 8px; }
-    .footer-bottom { padding: 12px 24px; }
+    footer { flex-direction: column; gap: 8px; align-items: center; padding: 20px 24px; text-align: center; }
+    .footer-logo { font-size: 16px; }
+    .footer-info { flex-direction: column; gap: 4px; }
+    .footer-social { gap: 16px; justify-content: center; }
+    .footer-bottom { padding: 10px 24px; flex-direction: column; gap: 6px; text-align: center; }
   }
 </style>
 </head>
@@ -890,7 +891,6 @@
   <div class="footer-logo">Alon <em style="font-style:italic">Barber</em></div>
   <div class="footer-info">
     <p>דרך מנחם בגין 65, תל אביב</p>
-
     <p><a href="https://calmark.co.il/p/WY0vQ" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">קביעת תור</a></p>
   </div>
   <div class="footer-social">
