@@ -556,33 +556,39 @@
   footer {
     background: var(--white);
     border-top: 1px solid var(--light-gray);
-    padding: 72px 56px;
+    padding: 28px 40px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
   .footer-logo {
     font-family: var(--serif);
-    font-size: 36px;
+    font-size: 20px;
     font-weight: 300;
     color: var(--black);
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
   }
   .footer-info {
     text-align: center;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .footer-info p {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--gray);
-    line-height: 2;
     font-weight: 300;
     letter-spacing: 1px;
   }
   .footer-social {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-end;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
   }
   .footer-social a {
     font-size: 9px;
@@ -594,39 +600,39 @@
     transition: color 0.3s;
   }
   .footer-social a:hover { color: var(--black); }
-  .footer-copy {
-    margin-top: 48px;
-    padding-top: 24px;
+  .footer-bottom {
+    background: var(--white);
     border-top: 1px solid var(--light-gray);
-    text-align: center;
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
     font-size: 9px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: #ccc;
     text-transform: uppercase;
     font-weight: 300;
   }
   .footer-credit {
-    margin-top: 24px;
-    padding: 20px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
-    border-top: 1px solid var(--light-gray);
+    gap: 8px;
   }
   .footer-credit span {
     font-size: 9px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: #bbb;
     font-weight: 300;
     font-family: var(--sans);
   }
   .witch-logo {
-    height: 36px;
-    width: 36px;
+    height: 28px;
+    width: 28px;
     object-fit: contain;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s;
     border-radius: 50%;
   }
@@ -657,9 +663,10 @@
     .reviews-grid { grid-template-columns: 1fr; }
     .review-card { padding: 28px 20px; }
 
-    footer { flex-direction: column; gap: 32px; align-items: flex-start; padding: 48px 24px; }
-    .footer-social { align-items: flex-start; }
-    .footer-info { text-align: right; }
+    footer { flex-direction: column; gap: 12px; align-items: flex-start; padding: 20px 24px; }
+    .footer-social { gap: 16px; }
+    .footer-info { gap: 8px; }
+    .footer-bottom { padding: 12px 24px; }
   }
 </style>
 </head>
@@ -866,11 +873,11 @@
 
 <!-- FOOTER -->
 <footer id="contact">
-  <div class="footer-logo">Alon<br><em style="font-style:italic">Barber</em></div>
+  <div class="footer-logo">Alon <em style="font-style:italic">Barber</em></div>
   <div class="footer-info">
     <p>דרך מנחם בגין 65, תל אביב</p>
-    <p><a href="https://calmark.co.il/p/WY0vQ" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">לתיאום תור — לחץ לקביעה</a></p>
-    <p style="margin-top:8px;color:#bbb;font-size:10px;letter-spacing:2px">@alon_rafailov</p>
+    <p>·</p>
+    <p><a href="https://calmark.co.il/p/WY0vQ" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">קביעת תור</a></p>
   </div>
   <div class="footer-social">
     <a href="https://www.instagram.com/alon_rafailov/">Instagram</a>
@@ -878,12 +885,14 @@
     <a href="tel:+972537002490">טלפון</a>
   </div>
 </footer>
-<div class="footer-copy">© 2026 Alon Barber · כל הזכויות שמורות</div>
-<div class="footer-credit">
-  <span>עיצוב ופיתוח</span>
-  <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch - Web & App Development">
-    <img src="witch-logo.png" alt="The Witch" class="witch-logo">
-  </a>
+<div class="footer-bottom">
+  <div class="footer-copy">© 2026 Alon Barber</div>
+  <div class="footer-credit">
+    <span>עיצוב ופיתוח</span>
+    <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch">
+      <img src="witch-logo.png" alt="The Witch" class="witch-logo">
+    </a>
+  </div>
 </div>
 
 <script>
