@@ -651,21 +651,20 @@
     bottom: 24px;
     left: 24px;
     z-index: 300;
-    background: var(--black);
+    background: #2d3748;
     color: var(--white);
     border: none;
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    font-size: 22px;
+    width: 52px;
+    height: 52px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.2s;
   }
-  .access-btn:hover { transform: scale(1.1); }
+  .access-btn:hover { transform: scale(1.08); background: #1a202c; }
 
   .access-panel {
     position: fixed;
@@ -1071,7 +1070,13 @@
 </div>
 
 <!-- ACCESSIBILITY BUTTON + PANEL -->
-<button class="access-btn" id="accessBtn" aria-label="נגישות">♿</button>
+<button class="access-btn" id="accessBtn" aria-label="נגישות">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="4" r="2"/>
+    <path d="M12 7c-1.1 0-2 .9-2 2v4l-2.5 4.5c-.3.5-.1 1.1.4 1.4.5.3 1.1.1 1.4-.4L11 15h2l1.7 3.5c.3.5.9.7 1.4.4.5-.3.7-.9.4-1.4L14 13V9c0-1.1-.9-2-2-2z"/>
+    <path d="M8.5 9.5C7.7 10.4 7 11.6 7 13c0 2.8 2.2 5 5 5s5-2.2 5-5c0-1.4-.7-2.6-1.5-3.5"/>
+  </svg>
+</button>
 
 <div class="access-panel" id="accessPanel" role="region" aria-label="כלי נגישות">
   <div class="access-panel-title">נגישות</div>
