@@ -273,6 +273,12 @@
     background: rgba(255,255,255,0.3);
   }
 
+  /* SPLIT LAYOUT */
+  .split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
   /* ABOUT */
   .about {
     position: relative;
@@ -281,6 +287,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    height: 100%;
   }
   .about-bg {
     position: absolute;
@@ -365,9 +372,11 @@
 
   /* SERVICES */
   .services {
-    padding: 60px 56px;
+    padding: 60px 48px;
     background: var(--white);
     border-top: 1px solid var(--light-gray);
+    border-right: 1px solid var(--light-gray);
+    overflow-y: auto;
   }
   .services-header {
     display: flex;
@@ -644,6 +653,8 @@
     .hero-cta { padding: 16px 36px; font-size: 8px; letter-spacing: 4px; }
     .hero-icons { gap: 20px; }
 
+    .split-layout { grid-template-columns: 1fr; }
+    .services { border-right: none; border-top: 1px solid var(--light-gray); }
     .about-content { padding: 72px 28px; }
     .about-stats { gap: 28px; }
 
@@ -723,6 +734,9 @@
     <div class="scroll-hint-line"></div>
   </div>
 </section>
+
+<!-- ABOUT + SERVICES SPLIT -->
+<div class="split-layout">
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -830,6 +844,8 @@
     <div class="service-price">₪250</div>
   </div>
 </section>
+
+</div><!-- end split-layout -->
 
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
