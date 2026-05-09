@@ -982,6 +982,32 @@
     line-height: 1;
   }
 
+  /* PAGE TRANSITIONS */
+  .page-transition {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .page-transition.active {
+    opacity: 0.4;
+    pointer-events: all;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   body.high-contrast { filter: contrast(1.6) brightness(1.1); }
   body.grayscale-mode { filter: grayscale(100%); }
   body.high-contrast.grayscale-mode { filter: contrast(1.6) brightness(1.1) grayscale(100%); }
@@ -1300,6 +1326,8 @@
   </div>
 </div>
 
+<div class="page-transition" id="pageTransition"></div>
+
 <!-- WHATSAPP FLOAT -->
 <a class="whatsapp-btn" href="https://wa.me/972537002490" aria-label="WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -1420,6 +1448,48 @@
 <script>
   window.onbeforeunload = () => { window.scrollTo(0, 0); };
   history.scrollRestoration = 'manual';
+
+  /* ── SCROLL REVEAL ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('section, .services-section, .reviews-section, .gallery-section, .about-section, .contact-section, .footer-section').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+
+  /* ── NAV TRANSITION ── */
+  const transitionOverlay = document.getElementById('pageTransition');
+
+  function navTo(hash) {
+    const target = document.querySelector(hash);
+    if (!target) return;
+    transitionOverlay.classList.add('active');
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      transitionOverlay.classList.remove('active');
+    }, 220);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const hash = this.getAttribute('href');
+      if (!hash || hash === '#') return;
+      e.preventDefault();
+      // close mobile menu if open
+      const overlay = document.getElementById('mobileMenu');
+      if (overlay && overlay.classList.contains('open')) {
+        overlay.classList.remove('open');
+      }
+      navTo(hash);
+    });
+  });
 
   let bookingLock = false;
   function goBook() {
