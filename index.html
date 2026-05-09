@@ -1061,7 +1061,7 @@
   </div>
 </footer>
 <div class="footer-bottom">
-  <div class="footer-copy">© 2026 Alon Barber &nbsp;·&nbsp; <button onclick="openAccessModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">הצהרת נגישות</button></div>
+  <div class="footer-copy">© 2026 Alon Barber &nbsp;·&nbsp; <button onclick="openAccessModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">הצהרת נגישות</button> &nbsp;·&nbsp; <button onclick="openTermsModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">תנאי שימוש</button></div>
   <div class="footer-credit">
     <span>עיצוב ופיתוח</span>
     <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch">
@@ -1113,6 +1113,32 @@
     <h3>פניות נגישות</h3>
     <p>נתקלת בבעיית נגישות? ניתן לפנות ב-WhatsApp:</p>
     <p><a href="https://wa.me/972537002490" style="color:#000;font-weight:400">053-700-2490</a></p>
+    <h3>תאריך עדכון</h3>
+    <p>מאי 2026</p>
+  </div>
+</div>
+
+<!-- TERMS MODAL -->
+<div class="access-modal-overlay" id="termsModal" role="dialog" aria-modal="true" aria-label="תנאי שימוש">
+  <div class="access-modal">
+    <button class="access-modal-close" onclick="closeTermsModal()" aria-label="סגור">✕</button>
+    <h2>תנאי שימוש</h2>
+    <h3>כללי</h3>
+    <p>השימוש באתר Alon Barber מהווה הסכמה לתנאים המפורטים להלן. אנא קראו אותם בעיון לפני השימוש.</p>
+    <h3>השירות</h3>
+    <p>האתר מיועד לצפייה במידע על השירותים המוצעים ולקביעת תורים בלבד. כל המחירים המופיעים באתר הם בשקלים חדשים וכוללים מע"מ.</p>
+    <h3>קביעת תורים</h3>
+    <ul>
+      <li>ביטול תור יש לבצע לפחות 24 שעות מראש</li>
+      <li>אי הגעה ללא הודעה מראש עשויה לגרור חיוב</li>
+      <li>קביעת תור מהווה אישור לתנאים אלו</li>
+    </ul>
+    <h3>קניין רוחני</h3>
+    <p>כל התכנים באתר, לרבות עיצוב, טקסטים ותמונות, הם רכוש Alon Barber ואסורים בשימוש ללא אישור בכתב.</p>
+    <h3>הגבלת אחריות</h3>
+    <p>בעל האתר אינו אחראי לנזקים כלשהם הנובעים משימוש באתר. המידע מוצג כפי שהוא ועשוי להשתנות ללא הודעה מראש.</p>
+    <h3>יצירת קשר</h3>
+    <p>לשאלות ובירורים: <a href="https://wa.me/972537002490" style="color:#000;font-weight:400">053-700-2490</a></p>
     <h3>תאריך עדכון</h3>
     <p>מאי 2026</p>
   </div>
@@ -1181,6 +1207,17 @@
   }
   document.getElementById('accessModal').addEventListener('click', (e) => {
     if (e.target === document.getElementById('accessModal')) closeAccessModal();
+  });
+  function openTermsModal() {
+    document.getElementById('termsModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeTermsModal() {
+    document.getElementById('termsModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('termsModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('termsModal')) closeTermsModal();
   });
 </script>
 </body>
