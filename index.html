@@ -1061,7 +1061,7 @@
   </div>
 </footer>
 <div class="footer-bottom">
-  <div class="footer-copy">© 2026 Alon Barber &nbsp;·&nbsp; <button onclick="openAccessModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">הצהרת נגישות</button> &nbsp;·&nbsp; <button onclick="openTermsModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">תנאי שימוש</button></div>
+  <div class="footer-copy">© 2026 Alon Barber &nbsp;·&nbsp; <button onclick="openAccessModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">הצהרת נגישות</button> &nbsp;·&nbsp; <button onclick="openTermsModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">תנאי שימוש</button> &nbsp;·&nbsp; <button onclick="openPrivacyModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">מדיניות פרטיות</button></div>
   <div class="footer-credit">
     <span>עיצוב ופיתוח</span>
     <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch">
@@ -1113,6 +1113,39 @@
     <h3>פניות נגישות</h3>
     <p>נתקלת בבעיית נגישות? ניתן לפנות ב-WhatsApp:</p>
     <p><a href="https://wa.me/972537002490" style="color:#000;font-weight:400">053-700-2490</a></p>
+    <h3>תאריך עדכון</h3>
+    <p>מאי 2026</p>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="access-modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-label="מדיניות פרטיות">
+  <div class="access-modal">
+    <button class="access-modal-close" onclick="closePrivacyModal()" aria-label="סגור">✕</button>
+    <h2>מדיניות פרטיות</h2>
+    <h3>כללי</h3>
+    <p>Alon Barber מכבד את פרטיות המשתמשים. מדיניות זו מסבירה כיצד נאסף ומשמש מידע אישי בהתאם לחוק הגנת הפרטיות, התשמ"א-1981.</p>
+    <h3>מידע הנאסף</h3>
+    <ul>
+      <li>שם ומספר טלפון — בעת קביעת תור דרך מערכת Calmark</li>
+      <li>נתוני שימוש כלליים — באמצעות שרתי האחסון (Render)</li>
+    </ul>
+    <h3>שימוש במידע</h3>
+    <ul>
+      <li>ניהול תורים ותזכורות</li>
+      <li>יצירת קשר בנוגע לתורים קיימים</li>
+      <li>המידע לא יועבר לצדדים שלישיים למעט מערכת Calmark לצורך ניהול התורים</li>
+    </ul>
+    <h3>אחסון מידע</h3>
+    <p>המידע נשמר במערכת Calmark בלבד. לעיון במדיניות הפרטיות של Calmark: <a href="https://calmark.co.il" style="color:#000;">calmark.co.il</a></p>
+    <h3>זכויות המשתמש</h3>
+    <ul>
+      <li>זכות לעיין במידע האישי השמור</li>
+      <li>זכות לתיקון או מחיקת מידע</li>
+      <li>לפנייה: WhatsApp <a href="https://wa.me/972537002490" style="color:#000;font-weight:400">053-700-2490</a></li>
+    </ul>
+    <h3>עוגיות (Cookies)</h3>
+    <p>האתר אינו משתמש בעוגיות מעקב. ייתכן שימוש בעוגיות טכניות בלבד לצורך תפקוד תקין.</p>
     <h3>תאריך עדכון</h3>
     <p>מאי 2026</p>
   </div>
@@ -1218,6 +1251,17 @@
   }
   document.getElementById('termsModal').addEventListener('click', (e) => {
     if (e.target === document.getElementById('termsModal')) closeTermsModal();
+  });
+  function openPrivacyModal() {
+    document.getElementById('privacyModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePrivacyModal() {
+    document.getElementById('privacyModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('privacyModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('privacyModal')) closePrivacyModal();
   });
 </script>
 </body>
