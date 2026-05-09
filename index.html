@@ -645,6 +645,167 @@
   }
   .witch-logo:hover { opacity: 1; }
 
+  /* ACCESSIBILITY */
+  .access-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 300;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+  .access-btn:hover { transform: scale(1.1); }
+
+  .access-panel {
+    position: fixed;
+    bottom: 84px;
+    left: 24px;
+    z-index: 300;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    width: 220px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .access-panel.open { display: flex; }
+  .access-panel-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    font-family: var(--sans);
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .access-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .access-label {
+    font-size: 13px;
+    color: #333;
+    font-family: var(--sans);
+    font-weight: 300;
+  }
+  .access-controls {
+    display: flex;
+    gap: 6px;
+  }
+  .access-controls button {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    font-family: var(--sans);
+  }
+  .access-controls button:hover { background: #e0e0e0; }
+  .access-toggle {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 300;
+    transition: background 0.2s, color 0.2s;
+  }
+  .access-toggle.active { background: var(--black); color: #fff; border-color: var(--black); }
+  .access-statement-link {
+    font-size: 10px;
+    color: #999;
+    text-align: center;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: var(--sans);
+    background: none;
+    border: none;
+    width: 100%;
+  }
+
+  /* ACCESSIBILITY MODAL */
+  .access-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 400;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .access-modal-overlay.open { display: flex; }
+  .access-modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    direction: rtl;
+  }
+  .access-modal h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: var(--black);
+  }
+  .access-modal h3 {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 400;
+    margin: 20px 0 8px;
+  }
+  .access-modal p, .access-modal li {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.8;
+    font-family: var(--sans);
+    font-weight: 300;
+  }
+  .access-modal ul { padding-right: 16px; }
+  .access-modal-close {
+    float: left;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+  }
+
+  body.high-contrast { filter: contrast(1.6) brightness(1.1); }
+  body.grayscale-mode { filter: grayscale(100%); }
+  body.high-contrast.grayscale-mode { filter: contrast(1.6) brightness(1.1) grayscale(100%); }
+
   @media (max-width: 768px) {
     nav { padding: 20px 24px; mix-blend-mode: normal; }
     .nav-links { display: none; }
@@ -900,12 +1061,60 @@
   </div>
 </footer>
 <div class="footer-bottom">
-  <div class="footer-copy">© 2026 Alon Barber</div>
+  <div class="footer-copy">© 2026 Alon Barber &nbsp;·&nbsp; <button onclick="openAccessModal()" style="background:none;border:none;font-size:9px;letter-spacing:2px;color:#ccc;text-transform:uppercase;cursor:pointer;font-family:var(--sans);font-weight:300;">הצהרת נגישות</button></div>
   <div class="footer-credit">
     <span>עיצוב ופיתוח</span>
     <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch">
       <img src="witch-logo.png" alt="The Witch" class="witch-logo">
     </a>
+  </div>
+</div>
+
+<!-- ACCESSIBILITY BUTTON + PANEL -->
+<button class="access-btn" id="accessBtn" aria-label="נגישות">♿</button>
+
+<div class="access-panel" id="accessPanel" role="region" aria-label="כלי נגישות">
+  <div class="access-panel-title">נגישות</div>
+  <div class="access-row">
+    <span class="access-label">גודל טקסט</span>
+    <div class="access-controls">
+      <button onclick="changeFontSize(-1)" aria-label="הקטן טקסט">A-</button>
+      <button onclick="changeFontSize(0)" aria-label="איפוס טקסט">↺</button>
+      <button onclick="changeFontSize(1)" aria-label="הגדל טקסט">A+</button>
+    </div>
+  </div>
+  <div class="access-row">
+    <span class="access-label">ניגודיות גבוהה</span>
+    <button class="access-toggle" id="contrastBtn" onclick="toggleContrast()">הפעל</button>
+  </div>
+  <div class="access-row">
+    <span class="access-label">גווני אפור</span>
+    <button class="access-toggle" id="grayscaleBtn" onclick="toggleGrayscale()">הפעל</button>
+  </div>
+  <button class="access-statement-link" onclick="openAccessModal()">הצהרת נגישות</button>
+</div>
+
+<!-- ACCESSIBILITY MODAL -->
+<div class="access-modal-overlay" id="accessModal" role="dialog" aria-modal="true" aria-label="הצהרת נגישות">
+  <div class="access-modal">
+    <button class="access-modal-close" onclick="closeAccessModal()" aria-label="סגור">✕</button>
+    <h2>הצהרת נגישות</h2>
+    <h3>כללי</h3>
+    <p>Alon Barber מחויב להנגשת האתר לאנשים עם מוגבלויות בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות) התשע"ג-2013.</p>
+    <h3>מה נגיש באתר</h3>
+    <ul>
+      <li>תמיכה בקוראי מסך (NVDA, VoiceOver)</li>
+      <li>ניווט מלא במקלדת</li>
+      <li>תגיות alt לכל התמונות</li>
+      <li>ניגודיות צבעים תקנית</li>
+      <li>כיוון RTL מלא לעברית</li>
+      <li>כלי נגישות: הגדלת טקסט, ניגודיות גבוהה, גווני אפור</li>
+    </ul>
+    <h3>פניות נגישות</h3>
+    <p>נתקלת בבעיית נגישות? ניתן לפנות ב-WhatsApp:</p>
+    <p><a href="https://wa.me/972537002490" style="color:#000;font-weight:400">053-700-2490</a></p>
+    <h3>תאריך עדכון</h3>
+    <p>מאי 2026</p>
   </div>
 </div>
 
@@ -933,6 +1142,45 @@
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+
+  // ACCESSIBILITY
+  let fontSize = 0;
+  document.getElementById('accessBtn').addEventListener('click', () => {
+    document.getElementById('accessPanel').classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#accessPanel') && !e.target.closest('#accessBtn')) {
+      document.getElementById('accessPanel').classList.remove('open');
+    }
+  });
+  function changeFontSize(dir) {
+    if (dir === 0) { fontSize = 0; } else { fontSize = Math.max(-2, Math.min(4, fontSize + dir)); }
+    document.documentElement.style.fontSize = (16 + fontSize * 2) + 'px';
+  }
+  function toggleContrast() {
+    document.body.classList.toggle('high-contrast');
+    document.getElementById('contrastBtn').classList.toggle('active');
+    document.getElementById('contrastBtn').textContent =
+      document.body.classList.contains('high-contrast') ? 'כבה' : 'הפעל';
+  }
+  function toggleGrayscale() {
+    document.body.classList.toggle('grayscale-mode');
+    document.getElementById('grayscaleBtn').classList.toggle('active');
+    document.getElementById('grayscaleBtn').textContent =
+      document.body.classList.contains('grayscale-mode') ? 'כבה' : 'הפעל';
+  }
+  function openAccessModal() {
+    document.getElementById('accessModal').classList.add('open');
+    document.getElementById('accessPanel').classList.remove('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAccessModal() {
+    document.getElementById('accessModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('accessModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('accessModal')) closeAccessModal();
   });
 </script>
 </body>
