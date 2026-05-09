@@ -403,6 +403,9 @@
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
   }
   .service-row:hover { background: #f4f4f2; margin: 0 -16px; padding: 28px 16px; }
   .service-row:hover .service-book-hint { opacity: 1; }
@@ -737,7 +740,7 @@
     <div class="label" style="text-align:left">★★★★★ · 5.0</div>
   </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Haircut</div>
       <div class="service-he">תספורת</div>
@@ -745,9 +748,9 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪110</div>
-  </a>
+  </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Haircut + Beard Trim</div>
       <div class="service-he">תספורת + סידור זקן</div>
@@ -755,9 +758,9 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪130</div>
-  </a>
+  </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Haircut + Beard Design</div>
       <div class="service-he">תספורת + עיצוב זקן</div>
@@ -765,9 +768,9 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪150</div>
-  </a>
+  </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Beard Design</div>
       <div class="service-he">עיצוב זקן</div>
@@ -775,9 +778,9 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪80</div>
-  </a>
+  </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Scissors Haircut</div>
       <div class="service-he">תספורת מספריים</div>
@@ -785,9 +788,9 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪150</div>
-  </a>
+  </div>
 
-  <a class="service-row" href="https://calmark.co.il/p/WY0vQ">
+  <div class="service-row" onclick="goBook()">
     <div>
       <div class="service-en">Scissors + Beard</div>
       <div class="service-he">מספריים + זקן</div>
@@ -795,16 +798,16 @@
       <div class="service-book-hint">לחץ לקביעת תור ←</div>
     </div>
     <div class="service-price">₪180</div>
-  </a>
+  </div>
 
-  <a class="service-featured" href="https://calmark.co.il/p/WY0vQ" style="text-decoration:none;color:inherit;cursor:pointer;display:flex;">
+  <div class="service-featured" onclick="goBook()" style="cursor:pointer;">
     <div>
       <div class="service-featured-badge">After Hours · Exclusive</div>
       <div class="service-featured-name">תספורת לאחר שעות הפעילות</div>
       <div class="service-featured-note">החל מ-19:00 — לתיאום יש לפנות ב-WhatsApp</div>
     </div>
     <div class="service-price">₪250</div>
-  </a>
+  </div>
 </section>
 
 <!-- REVIEWS -->
@@ -862,6 +865,14 @@
 <div class="footer-copy">© 2026 Alon Barber · כל הזכויות שמורות</div>
 
 <script>
+  let bookingLock = false;
+  function goBook() {
+    if (bookingLock) return;
+    bookingLock = true;
+    window.location.href = 'https://calmark.co.il/p/WY0vQ';
+    setTimeout(() => { bookingLock = false; }, 2000);
+  }
+
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
