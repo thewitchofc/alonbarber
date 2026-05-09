@@ -766,6 +766,34 @@
     transform: scale(0.92);
     opacity: 0.6;
   }
+
+  /* GLOBAL BUTTON PRESS ANIMATION */
+  .hero-cta, .mobile-cta, .access-btn, .whatsapp-btn,
+  .service-row, .nav-link, .menu-link {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-cta { transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease !important; }
+  .hero-cta:active { transform: scale(0.95) !important; box-shadow: none !important; }
+  .mobile-cta { transition: transform 0.15s ease, background 0.2s ease !important; }
+  .mobile-cta:active { transform: scale(0.95) !important; }
+  .access-btn:active { transform: scale(0.88) !important; }
+  .whatsapp-btn:active { transform: scale(0.88) !important; }
+  .service-row { transition: background 0.2s, transform 0.15s ease !important; }
+  .service-row:active { transform: scale(0.98) !important; }
+
+  /* RIPPLE */
+  .ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    transform: scale(0);
+    animation: rippleAnim 0.5s linear;
+    pointer-events: none;
+  }
+  @keyframes rippleAnim {
+    to { transform: scale(4); opacity: 0; }
+  }
   .footer-bottom {
     background: var(--white);
     border-top: 1px solid var(--light-gray);
@@ -1488,6 +1516,21 @@
         overlay.classList.remove('open');
       }
       navTo(hash);
+    });
+  });
+
+  /* ── RIPPLE ── */
+  document.querySelectorAll('.hero-cta, .mobile-cta, .access-btn, .whatsapp-btn, .service-row').forEach(el => {
+    el.addEventListener('pointerdown', function(e) {
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
+      this.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
     });
   });
 
