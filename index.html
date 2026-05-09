@@ -758,6 +758,14 @@
     transition: color 0.3s;
   }
   .footer-social a:hover { color: var(--black); }
+  .footer-social a, .footer-info a, .footer-bottom button {
+    transition: transform 0.15s, opacity 0.15s;
+    display: inline-block;
+  }
+  .footer-social a:active, .footer-info a:active, .footer-bottom button:active {
+    transform: scale(0.92);
+    opacity: 0.6;
+  }
   .footer-bottom {
     background: var(--white);
     border-top: 1px solid var(--light-gray);
