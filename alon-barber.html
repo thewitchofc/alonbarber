@@ -605,6 +605,32 @@
     text-transform: uppercase;
     font-weight: 300;
   }
+  .footer-credit {
+    margin-top: 24px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-top: 1px solid var(--light-gray);
+  }
+  .footer-credit span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #bbb;
+    font-weight: 300;
+    font-family: var(--sans);
+  }
+  .witch-logo {
+    height: 36px;
+    width: 36px;
+    object-fit: contain;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    border-radius: 50%;
+  }
+  .witch-logo:hover { opacity: 1; }
 
   @media (max-width: 768px) {
     nav { padding: 20px 24px; mix-blend-mode: normal; }
@@ -853,6 +879,12 @@
   </div>
 </footer>
 <div class="footer-copy">© 2026 Alon Barber · כל הזכויות שמורות</div>
+<div class="footer-credit">
+  <span>עיצוב ופיתוח</span>
+  <a href="https://thewitch.co.il/" target="_blank" aria-label="The Witch - Web & App Development">
+    <img src="witch-logo.png" alt="The Witch" class="witch-logo">
+  </a>
+</div>
 
 <script>
   let bookingLock = false;
