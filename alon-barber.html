@@ -189,7 +189,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: url('alon.jpg') center/cover no-repeat var(--black);
+    background: var(--black);
   }
 
   .hero-video {
@@ -1507,14 +1507,7 @@
   if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.playsInline = true;
-    const playPromise = heroVideo.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        heroVideo.style.opacity = '0.6';
-      }).catch(() => {
-        heroVideo.style.display = 'none';
-      });
-    }
+    heroVideo.play().catch(() => {});
   }
 
   /* ── SCROLL REVEAL ── */
