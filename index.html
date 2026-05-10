@@ -206,6 +206,13 @@
   .hero-video::-webkit-media-controls-start-playback-button,
   .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
   .hero-video { pointer-events: none; }
+  .video-shield {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: transparent;
+    pointer-events: all;
+  }
 
   .hero-overlay {
     position: absolute;
@@ -1121,6 +1128,7 @@
   <video class="hero-video" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny">
     <source src="hero-video.mp4" type="video/mp4">
   </video>
+  <div class="video-shield"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
@@ -1490,12 +1498,15 @@
 
   /* ── FORCE VIDEO AUTOPLAY ON MOBILE ── */
   const heroVideo = document.querySelector('.hero-video');
+  const videoShield = document.querySelector('.video-shield');
   if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.playsInline = true;
     const tryPlay = () => heroVideo.play().catch(() => {});
     tryPlay();
-    document.addEventListener('touchstart', tryPlay, { once: true });
+    window.addEventListener('load', tryPlay);
+    if (videoShield) videoShield.addEventListener('touchstart', tryPlay, { passive: true });
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
     document.addEventListener('click', tryPlay, { once: true });
   }
 
