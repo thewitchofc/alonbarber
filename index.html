@@ -200,19 +200,7 @@
     object-fit: cover;
     opacity: 0.6;
   }
-  .hero-video::-webkit-media-controls,
-  .hero-video::-webkit-media-controls-panel,
-  .hero-video::-webkit-media-controls-play-button,
-  .hero-video::-webkit-media-controls-start-playback-button,
-  .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
   .hero-video { pointer-events: none; }
-  .video-shield {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: transparent;
-    pointer-events: all;
-  }
 
   .hero-overlay {
     position: absolute;
@@ -1125,16 +1113,9 @@
 
 <!-- HERO WITH VIDEO -->
 <section class="hero">
-  <video class="hero-video" id="heroVid" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback x-webkit-airplay="deny">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
     <source src="hero-video.mp4" type="video/mp4">
   </video>
-  <script>
-    (function(){
-      var v = document.getElementById('heroVid');
-      if(v){ v.muted=true; v.play && v.play().catch(function(){}); }
-    })();
-  </script>
-  <div class="video-shield"></div>
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
