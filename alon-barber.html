@@ -200,10 +200,12 @@
     object-fit: cover;
     opacity: 0.6;
   }
-  .hero-video::-webkit-media-controls { display: none !important; }
-  .hero-video::-webkit-media-controls-start-playback-button { display: none !important; }
-  .hero-video::-webkit-media-controls-panel { display: none !important; }
-  .hero-video::--webkit-media-controls-play-button { display: none !important; }
+  .hero-video::-webkit-media-controls,
+  .hero-video::-webkit-media-controls-panel,
+  .hero-video::-webkit-media-controls-play-button,
+  .hero-video::-webkit-media-controls-start-playback-button,
+  .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; }
+  .hero-video { pointer-events: none; }
 
   .hero-overlay {
     position: absolute;
@@ -1115,7 +1117,7 @@
 
 <!-- HERO WITH VIDEO -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline>
+  <video class="hero-video" autoplay muted loop playsinline disablepictureinpicture disableremoteplayback x-webkit-airplay="deny">
     <source src="hero-video.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
