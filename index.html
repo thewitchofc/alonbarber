@@ -1477,6 +1477,17 @@
   window.onbeforeunload = () => { window.scrollTo(0, 0); };
   history.scrollRestoration = 'manual';
 
+  /* ── FORCE VIDEO AUTOPLAY ON MOBILE ── */
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.playsInline = true;
+    const tryPlay = () => heroVideo.play().catch(() => {});
+    tryPlay();
+    document.addEventListener('touchstart', tryPlay, { once: true });
+    document.addEventListener('click', tryPlay, { once: true });
+  }
+
   /* ── SCROLL REVEAL ── */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
