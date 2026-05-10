@@ -1089,6 +1089,7 @@
   }
 </style>
 </head>
+<script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; window.scrollTo(0,0);</script>
 <body>
 
 <nav>
@@ -1481,8 +1482,11 @@
 </div>
 
 <script>
-  window.onbeforeunload = () => { window.scrollTo(0, 0); };
-  history.scrollRestoration = 'manual';
+  /* ── FORCE SCROLL TO TOP ON LOAD ── */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
+  window.addEventListener('load', () => { window.scrollTo(0, 0); if (location.hash) history.replaceState(null, '', location.pathname); });
 
   /* ── FORCE VIDEO AUTOPLAY ON MOBILE ── */
   const heroVideo = document.querySelector('.hero-video');
