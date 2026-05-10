@@ -189,7 +189,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: var(--black);
+    background: url('alon.jpg') center/cover no-repeat var(--black);
   }
 
   .hero-video {
@@ -1502,18 +1502,19 @@
   document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
   window.addEventListener('load', () => { window.scrollTo(0, 0); if (location.hash) history.replaceState(null, '', location.pathname); });
 
-  /* ── FORCE VIDEO AUTOPLAY ON MOBILE ── */
+  /* ── VIDEO AUTOPLAY — hide if blocked ── */
   const heroVideo = document.querySelector('.hero-video');
-  const videoShield = document.querySelector('.video-shield');
   if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.playsInline = true;
-    const tryPlay = () => heroVideo.play().catch(() => {});
-    tryPlay();
-    window.addEventListener('load', tryPlay);
-    if (videoShield) videoShield.addEventListener('touchstart', tryPlay, { passive: true });
-    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-    document.addEventListener('click', tryPlay, { once: true });
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        heroVideo.style.opacity = '0.6';
+      }).catch(() => {
+        heroVideo.style.display = 'none';
+      });
+    }
   }
 
   /* ── SCROLL REVEAL ── */
